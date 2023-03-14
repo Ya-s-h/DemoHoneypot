@@ -1,4 +1,8 @@
+# Author: Yash Aggarwal
 
+
+
+# Loading modules
 import threading
 import smtpd
 import asyncore
@@ -10,8 +14,9 @@ load_dotenv()
 
 
 def send_email(user, pwd, recipient, body, subject=None):
-
-
+"""
+Function to login as a user and send email to different user(s)
+"""
     gmail_user = user
     gmail_pwd = pwd
     FROM = user
@@ -25,7 +30,9 @@ def send_email(user, pwd, recipient, body, subject=None):
         client = smtplib.SMTP("smtp.gmail.com", 587)
         client.ehlo()
         client.starttls()
+        # Logging in
         client.login(gmail_user, gmail_pwd)
+        # Sending Mail
         client.sendmail(FROM, TO, message)
         client.close()
         print ('successfully sent the mail')
@@ -41,5 +48,6 @@ fromaddr = "aggarwalyash22623@gmail.com"
 toaddrs = "vasu2013agg@gmail.com"
 msg = 'Hello'
 
+# Testing
 send_email(user =fromaddr, pwd = os.environ['pass'], recipient= toaddrs, body= msg)
 client.quit()
