@@ -27,7 +27,7 @@ class logFile():
     def __init__(self, filename=f"smtp-honeypot-{FormatTime()}.log"):
         """
         filename, by default is smtp-honeypot-time.log
-        can be changed
+        can be changed by changing value of filename at time of obj creation
         """
         self.filename = filename
         self.f = open(self.filename, 'w')
@@ -63,6 +63,9 @@ class Server(SMTPServer):
     Creates an object for SMTP Server
     """
     def process_message(self, peer, mailfrom, rcpttos, data):
+        """
+        Processing message for writting in logfile
+        """
         global Output
 
         subject = ''
